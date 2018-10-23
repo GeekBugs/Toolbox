@@ -18,6 +18,10 @@ import android.widget.ListView;
  */
 public class DisplayUtils {
 
+    public DisplayUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 获取状态栏高度
      */
@@ -71,7 +75,6 @@ public class DisplayUtils {
         if (params == null) {
             params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         }
-        // ��þ�ȷ�Ŀ�ȡ��߶�
         int widthMeasureSpec = MeasureSpec.makeMeasureSpec(params.width, MeasureSpec.EXACTLY);
         int heightMeasureSpec = MeasureSpec.makeMeasureSpec(params.height, MeasureSpec.EXACTLY);
         view.measure(widthMeasureSpec, heightMeasureSpec);

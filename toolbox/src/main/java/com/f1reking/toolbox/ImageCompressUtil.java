@@ -20,6 +20,10 @@ import java.io.OutputStream;
  */
 public class ImageCompressUtil {
 
+    public ImageCompressUtil() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 按指定的长边缩放，并根据照片中相机的方向信息调整图片方向
      *

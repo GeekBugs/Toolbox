@@ -8,6 +8,10 @@ import java.util.Locale;
  */
 public final class StringUtils {
 
+    public StringUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 字符串转整数
      */

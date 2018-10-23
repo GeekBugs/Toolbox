@@ -11,6 +11,11 @@ import java.util.Map;
  * Created by F1ReKing on 2016/1/2.
  */
 public class SPUtils {
+
+    public SPUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 保存在手机里面的文件名
      */

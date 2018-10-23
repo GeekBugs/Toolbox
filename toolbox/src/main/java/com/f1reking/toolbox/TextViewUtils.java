@@ -13,6 +13,10 @@ import android.widget.TextView;
  */
 public class TextViewUtils {
 
+    public TextViewUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 给同一个TextView设置不同的颜色
      *

@@ -9,6 +9,11 @@ import android.widget.Toast;
  * Created by F1ReKing on 2016/1/2.
  */
 public class ToastUtils {
+
+    public ToastUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     private static Toast toast = null;
 
     /**

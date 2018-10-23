@@ -11,6 +11,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class TimeUtils {
 
+    public TimeUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     public static String format(String pattern,long milliseconds){
         return (new SimpleDateFormat(pattern)).format(new Date(milliseconds));
     }

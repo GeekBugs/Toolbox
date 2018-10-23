@@ -15,6 +15,10 @@ import android.view.WindowManager;
  */
 public class ScreenUtils {
 
+    public ScreenUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 获取当前屏幕的宽度高度
      */

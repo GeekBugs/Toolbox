@@ -15,7 +15,9 @@ import java.io.ByteArrayOutputStream;
  */
 public class ConvertUtils {
 
-
+    public ConvertUtils() {
+        throw new Error("Do not need instantiate!");
+    }
 
     /**
      * bitmap 转换成 ByteArray

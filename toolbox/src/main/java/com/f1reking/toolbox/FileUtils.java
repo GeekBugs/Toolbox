@@ -21,6 +21,10 @@ import java.io.OutputStream;
  */
 public class FileUtils {
 
+    public FileUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 获取文件大小
      */

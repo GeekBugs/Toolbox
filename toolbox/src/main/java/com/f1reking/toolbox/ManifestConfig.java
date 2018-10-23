@@ -12,6 +12,10 @@ import android.os.Bundle;
  */
 public class ManifestConfig {
 
+    public ManifestConfig() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 获取配置在AndroidMinifest指定key的metaData值
      */

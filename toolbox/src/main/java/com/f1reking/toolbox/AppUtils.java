@@ -31,6 +31,7 @@ import javax.security.auth.x500.X500Principal;
  * Created by F1ReKing on 2016/1/2.
  */
 public class AppUtils {
+
     private static final boolean DEBUG = true;
     private static final String TAG = "AppUtils";
 
@@ -126,8 +127,10 @@ public class AppUtils {
      */
     public static boolean isServiceRunning(Context context, String className) {
         boolean isRunning = false;
-        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> servicesList = activityManager.getRunningServices(Integer.MAX_VALUE);
+        ActivityManager activityManager =
+            (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> servicesList =
+            activityManager.getRunningServices(Integer.MAX_VALUE);
         for (ActivityManager.RunningServiceInfo si : servicesList) {
             if (className.equals(si.service.getClassName())) {
                 isRunning = true;
@@ -160,15 +163,15 @@ public class AppUtils {
      * @return 是否执行成功
      */
     public static boolean stopRunningService(Context context, String className) {
-        Intent intent_service = null;
+        Intent intent = null;
         boolean ret = false;
         try {
-            intent_service = new Intent(context, Class.forName(className));
+            intent = new Intent(context, Class.forName(className));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (intent_service != null) {
-            ret = context.stopService(intent_service);
+        if (intent != null) {
+            ret = context.stopService(intent);
         }
         return ret;
     }
@@ -182,7 +185,8 @@ public class AppUtils {
         try {
             File dir = new File("/sys/devices/system/cpu/");
             File[] files = dir.listFiles(new FileFilter() {
-                @Override public boolean accept(File pathname) {
+                @Override
+                public boolean accept(File pathname) {
                     if (Pattern.matches("cpu[0-9]", pathname.getName())) {
                         return true;
                     }
@@ -214,8 +218,10 @@ public class AppUtils {
         }
 
         int pid = android.os.Process.myPid();
-        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> processInfoList = manager.getRunningAppProcesses();
+        ActivityManager manager =
+            (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> processInfoList =
+            manager.getRunningAppProcesses();
         if (processInfoList == null) {
             return true;
         }
@@ -243,7 +249,8 @@ public class AppUtils {
         List<ActivityManager.RunningTaskInfo> taskList = am.getRunningTasks(1);
         if (taskList != null && !taskList.isEmpty()) {
             ComponentName topActivity = taskList.get(0).topActivity;
-            if (topActivity != null && !topActivity.getPackageName().equals(context.getPackageName())) {
+            if (topActivity != null && !topActivity.getPackageName()
+                .equals(context.getPackageName())) {
                 return true;
             }
         }
@@ -258,7 +265,8 @@ public class AppUtils {
      */
     public static String getSign(Context context, String pkgName) {
         try {
-            PackageInfo pis = context.getPackageManager().getPackageInfo(pkgName, PackageManager.GET_SIGNATURES);
+            PackageInfo pis =
+                context.getPackageManager().getPackageInfo(pkgName, PackageManager.GET_SIGNATURES);
             return hexdigest(pis.signatures[0].toByteArray());
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -425,8 +433,9 @@ public class AppUtils {
                     return "WTF?!";
                 }
                 try {
-                    final String value = (String) get.invoke(systemProperties, "persist.sys.dalvik.vm.lib",
-                        /* Assuming default is */"Dalvik");
+                    final String value =
+                        (String) get.invoke(systemProperties, "persist.sys.dalvik.vm.lib",
+                            /* Assuming default is */"Dalvik");
                     if ("libdvm.so".equals(value)) {
                         return "Dalvik";
                     } else if ("libart.so".equals(value)) {
@@ -451,7 +460,8 @@ public class AppUtils {
         }
     }
 
-    private final static X500Principal DEBUG_DN = new X500Principal("CN=Android Debug,O=Android,C=US");
+    private final static X500Principal DEBUG_DN =
+        new X500Principal("CN=Android Debug,O=Android,C=US");
 
     /**
      * 检测当前应用是否是Debug版本
@@ -459,8 +469,8 @@ public class AppUtils {
     public static boolean isDebuggable(Context context) {
         boolean debuggable = false;
         try {
-            PackageInfo pinfo =
-                context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            PackageInfo pinfo = context.getPackageManager()
+                .getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
             Signature signatures[] = pinfo.signatures;
             for (Signature signature : signatures) {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");

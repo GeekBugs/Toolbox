@@ -16,6 +16,7 @@ import javax.crypto.spec.DESKeySpec;
 public class CipherUtils {
 
     private CipherUtils() {
+        throw new Error("Do not need instantiate!");
     }
 
     /**
@@ -38,7 +39,9 @@ public class CipherUtils {
 
         StringBuilder hex = new StringBuilder(hash.length * 2);
         for (byte b : hash) {
-            if ((b & 0xFF) < 0x10) hex.append("0");
+            if ((b & 0xFF) < 0x10) {
+                hex.append("0");
+            }
             hex.append(Integer.toHexString(b & 0xFF));
         }
         return hex.toString();

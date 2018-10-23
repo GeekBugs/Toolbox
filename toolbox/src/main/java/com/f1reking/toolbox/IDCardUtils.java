@@ -13,6 +13,11 @@ import java.util.regex.Pattern;
  * Created by F1ReKing on 2016/1/2.
  */
 public class IDCardUtils {
+
+    public IDCardUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /*********************************** 身份证验证开始 ****************************************/
     /**
      * 身份证号码验证 1、号码的结构 公民身份号码是特征组合码，由十七位数字本体码和一位校验码组成。排列顺序从左至右依次为：六位数字地址码，
@@ -72,7 +77,8 @@ public class IDCardUtils {
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         try {
             if ((gc.get(Calendar.YEAR) - Integer.parseInt(strYear)) > 150
-                || (gc.getTime().getTime() - s.parse(strYear + "-" + strMonth + "-" + strDay).getTime()) < 0) {
+                || (gc.getTime().getTime() - s.parse(strYear + "-" + strMonth + "-" + strDay)
+                .getTime()) < 0) {
                 errorInfo = "身份证生日不在有效范围。";
                 return errorInfo;
             }
@@ -102,7 +108,9 @@ public class IDCardUtils {
         // ================ 判断最后一位的值 ================
         int TotalmulAiWi = 0;
         for (int i = 0; i < 17; i++) {
-            TotalmulAiWi = TotalmulAiWi + Integer.parseInt(String.valueOf(Ai.charAt(i))) * Integer.parseInt(Wi[i]);
+            TotalmulAiWi =
+                TotalmulAiWi + Integer.parseInt(String.valueOf(Ai.charAt(i))) * Integer.parseInt(
+                    Wi[i]);
         }
         int modValue = TotalmulAiWi % 11;
         String strVerifyCode = ValCodeArr[modValue];
@@ -196,7 +204,8 @@ public class IDCardUtils {
     /**
      * @param args
      */
-    @SuppressWarnings("static-access") public static void main(String[] args) {
+    @SuppressWarnings("static-access")
+    public static void main(String[] args) {
         // String IDCardNum="210102820826411";
         // String IDCardNum="210102198208264114";
         while (true) {

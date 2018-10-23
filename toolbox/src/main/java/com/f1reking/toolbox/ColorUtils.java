@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
  */
 public class ColorUtils {
 
+    public ColorUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 获取资源中的颜色
      */
