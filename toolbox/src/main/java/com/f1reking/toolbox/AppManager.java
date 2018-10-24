@@ -13,14 +13,18 @@ import java.util.Stack;
 public class AppManager {
 
     private static Stack<Activity> activityStack;
-    private static AppManager instance;
+    private volatile static AppManager instance;
 
-    public AppManager() {
+    private AppManager() {
     }
 
     public static AppManager getInstance() {
-        if (null == instance) {
-            instance = new AppManager();
+        if (instance == null) {
+            synchronized (AppManager.class) {
+                if (instance == null) {
+                    instance = new AppManager();
+                }
+            }
         }
         return instance;
     }
@@ -79,9 +83,9 @@ public class AppManager {
      * 结束所有Activity
      */
     public void finishAllActivity() {
-        for (int i = 0; i < activityStack.size(); i++) {
-            if (activityStack.get(i) != null) {
-                activityStack.get(i).finish();
+        for (Activity activity : activityStack) {
+            if (activity != null) {
+                activity.finish();
             }
         }
         activityStack.clear();
@@ -89,13 +93,10 @@ public class AppManager {
 
     /**
      * 退出应用程序
-     * uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"
      */
     public void AppExit(Context context) {
         try {
             finishActivity();
-            ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            activityManager.killBackgroundProcesses(context.getPackageName());
             System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();

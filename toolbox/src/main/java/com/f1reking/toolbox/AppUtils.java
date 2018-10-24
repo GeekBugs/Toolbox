@@ -52,7 +52,10 @@ public class AppUtils {
         int verCode = -1;
         try {
             String packageName = context.getPackageName();
-            verCode = context.getPackageManager().getPackageInfo(packageName, 0).versionCode;
+            verCode =
+                (int) context.getPackageManager()
+                    .getPackageInfo(packageName, 0)
+                    .getLongVersionCode();
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -76,34 +79,34 @@ public class AppUtils {
         return verName;
     }
 
-    /**
-     * 安装apk
-     *
-     * @param context 上下文
-     * @param file APK文件
-     */
-    public static void installApk(Context context, File file) {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.setType("application/vnd.android.package-archive");
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-        context.startActivity(intent);
-    }
-
-    /**
-     * 安装apk
-     *
-     * @param context 上下文
-     * @param file APK文件uri
-     */
-    public static void installApk(Context context, Uri file) {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(file, "application/vnd.android.package-archive");
-        context.startActivity(intent);
-    }
+    ///**
+    // * 安装apk
+    // *
+    // * @param context 上下文
+    // * @param file APK文件
+    // */
+    //public static void installApk(Context context, File file) {
+    //    Intent intent = new Intent();
+    //    intent.setAction("android.intent.action.VIEW");
+    //    intent.addCategory("android.intent.category.DEFAULT");
+    //    intent.setType("application/vnd.android.package-archive");
+    //    intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+    //    context.startActivity(intent);
+    //}
+    //
+    ///**
+    // * 安装apk
+    // *
+    // * @param context 上下文
+    // * @param file APK文件uri
+    // */
+    //public static void installApk(Context context, Uri file) {
+    //    Intent intent = new Intent();
+    //    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    //    intent.setAction(Intent.ACTION_VIEW);
+    //    intent.setDataAndType(file, "application/vnd.android.package-archive");
+    //    context.startActivity(intent);
+    //}
 
     /**
      * 卸载apk
@@ -311,13 +314,16 @@ public class AppUtils {
      */
     public static int gc(Context context) {
         long i = getDeviceUsableMemory(context);
-        int count = 0; // 清理掉的进程数
+        // 清理掉的进程数
+        int count = 0;
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         // 获取正在运行的service列表
         List<ActivityManager.RunningServiceInfo> serviceList = am.getRunningServices(100);
         if (serviceList != null) {
             for (ActivityManager.RunningServiceInfo service : serviceList) {
-                if (service.pid == android.os.Process.myPid()) continue;
+                if (service.pid == android.os.Process.myPid()) {
+                    continue;
+                }
                 try {
                     android.os.Process.killProcess(service.pid);
                     count++;
@@ -471,13 +477,15 @@ public class AppUtils {
         try {
             PackageInfo pinfo = context.getPackageManager()
                 .getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-            Signature signatures[] = pinfo.signatures;
+            Signature[] signatures = pinfo.signatures;
             for (Signature signature : signatures) {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");
                 ByteArrayInputStream stream = new ByteArrayInputStream(signature.toByteArray());
                 X509Certificate cert = (X509Certificate) cf.generateCertificate(stream);
                 debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
-                if (debuggable) break;
+                if (debuggable) {
+                    break;
+                }
             }
         } catch (PackageManager.NameNotFoundException | CertificateException ignored) {
         }

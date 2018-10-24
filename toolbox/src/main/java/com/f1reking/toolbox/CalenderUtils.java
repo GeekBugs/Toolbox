@@ -10,9 +10,11 @@ public class CalenderUtils {
     private static int gregorianDate;
     private static boolean isGregorianLeap;
     private static int dayOfYear;
-    private static int dayOfWeek; // 周日一星期的第一天
+    // 周日一星期的第一天
+    private static int dayOfWeek;
     private static int chineseYear;
-    private static int chineseMonth; // 负数表示闰月
+    // 负数表示闰月
+    private static int chineseMonth;
     private static int chineseDate;
     private static int sectionalTerm;
     private static int principleTerm;
@@ -29,7 +31,7 @@ public class CalenderUtils {
         "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"
     };
 
-    public static final String[] daysOfMonth = {
+    public static final String[] DAYS_OF_MONTH = {
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
         "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
     };
@@ -88,7 +90,11 @@ public class CalenderUtils {
         principleTerm = 0;
     }
 
-    // 判断是否是闰年
+    /**
+     * 判断是否是闰年
+     * @param year
+     * @return
+     */
     public static boolean isGregorianLeapYear(int year) {
         boolean isLeap = false;
         if (year % 4 == 0) {
@@ -103,7 +109,12 @@ public class CalenderUtils {
         return isLeap;
     }
 
-    // 返回一个月有几天
+    /**
+     * 返回一个月有几天
+     * @param y
+     * @param m
+     * @return
+     */
     public static int daysInGregorianMonth(int y, int m) {
         int d = daysInGregorianMonth[m - 1];
         if (m == 2 && isGregorianLeapYear(y)) {
@@ -112,7 +123,13 @@ public class CalenderUtils {
         return d;
     }
 
-    // 计算当前天在本年中是第几天
+    /**
+     * 计算当前天在本年中是第几天
+     * @param y
+     * @param m
+     * @param d
+     * @return
+     */
     public static int dayOfYear(int y, int m, int d) {
         int c = 0;
         for (int i = 1; i < m; i++) {
@@ -122,23 +139,37 @@ public class CalenderUtils {
         return c;
     }
 
-    // 当前天是本周的第几天 ， 从星期天开始算
+    /**
+     * 当前天是本周的第几天 ， 从星期天开始算
+     * @param y
+     * @param m
+     * @param d
+     * @return
+     */
     public static int dayOfWeek(int y, int m, int d) {
-        int w = 1; // 公历一年一月一日是星期一，所以起始值为星期日
-        y = (y - 1) % 400 + 1; // 公历星期值分部 400 年循环一次
-        int ly = (y - 1) / 4; // 闰年次数
+        // 公历一年一月一日是星期一，所以起始值为星期日
+        int w = 1;
+        // 公历星期值分部 400 年循环一次
+        y = (y - 1) % 400 + 1;
+        // 闰年次数
+        int ly = (y - 1) / 4;
         ly = ly - (y - 1) / 100;
         ly = ly + (y - 1) / 400;
-        int ry = y - 1 - ly; // 常年次数
-        w = w + ry; // 常年星期值增一
-        w = w + 2 * ly; // 闰年星期值增二
+        // 常年次数
+        int ry = y - 1 - ly;
+        // 常年星期值增一
+        w = w + ry;
+        // 闰年星期值增二
+        w = w + 2 * ly;
         w = w + dayOfYear(y, m, d);
         w = (w - 1) % 7 + 1;
         return w;
     }
 
-    // 农历月份大小压缩表，两个字节表示一年。两个字节共十六个二进制位数，
-    // 前四个位数表示闰月月份，后十二个位数表示十二个农历月份的大小。
+    /**
+     *  农历月份大小压缩表，两个字节表示一年。两个字节共十六个二进制位数，
+     *  前四个位数表示闰月月份，后十二个位数表示十二个农历月份的大小。
+     */
     private static char[] chineseMonths = {
         0x00, 0x04, 0xad, 0x08, 0x5a, 0x01, 0xd5, 0x54, 0xb4, 0x09, 0x64, 0x05, 0x59, 0x45, 0x95, 0x0a, 0xa6, 0x04,
         0x55, 0x24, 0xad, 0x08, 0x5a, 0x62, 0xda, 0x04, 0xb4, 0x05, 0xb4, 0x55, 0x52, 0x0d, 0x94, 0x0a, 0x4a, 0x2a,

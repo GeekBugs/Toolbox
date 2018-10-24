@@ -110,7 +110,9 @@ public class DataCleanManager {
      * 删除文件
      */
     public static void deleteFolder(File file) {
-        if (file == null) return;
+        if (file == null) {
+            return;
+        }
         if (file.isFile() && file.exists()) {
             file.delete();
             return;
