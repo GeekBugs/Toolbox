@@ -24,7 +24,7 @@ import java.util.Date;
  */
 public class ImageUtils {
 
-    private static Context context;
+    private Context context;
 
     public ImageUtils(Context context) {
         this.context = context;
@@ -38,7 +38,9 @@ public class ImageUtils {
         }
         path = path + File.separator + "photo" + File.separator;
         File dir = new File(path);
-        if (!dir.exists()) dir.mkdirs();
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         if (!dir.exists()) {
             Toast.makeText(context, "无法创建文件", Toast.LENGTH_SHORT).show();
             return null;
@@ -59,7 +61,9 @@ public class ImageUtils {
             int imageHeight = newOpts.outHeight;// 因为填充了属性值
             // --------------------------
             int scaleFactor = Math.min(imageWidth / scaleWidth, imageHeight / scaleHeigth);
-            if (scaleFactor < 0) scaleFactor = 1;
+            if (scaleFactor < 0) {
+                scaleFactor = 1;
+            }
             newOpts.inSampleSize = scaleFactor;// 设置缩放比例
             newOpts.inJustDecodeBounds = false;
             newOpts.inPurgeable = true;
@@ -132,9 +136,13 @@ public class ImageUtils {
     public static String getCompressImagePath(Context context, String srcPath, int scaleWidth, int scaleHeigth,
         String waterMark, int condense) {
 
-        if (srcPath == null || srcPath.length() <= 0) return "";
+        if (srcPath == null || srcPath.length() <= 0) {
+            return "";
+        }
         Bitmap image = getImage(srcPath, scaleWidth, scaleHeigth, waterMark);
-        if (image == null) return "";
+        if (image == null) {
+            return "";
+        }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;

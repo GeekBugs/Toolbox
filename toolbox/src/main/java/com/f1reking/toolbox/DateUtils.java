@@ -12,6 +12,10 @@ import java.util.Locale;
  */
 public class DateUtils {
 
+    public DateUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     public static Calendar today = Calendar.getInstance();
 
     /*获取日期*/
@@ -30,7 +34,11 @@ public class DateUtils {
         return m;
     }
 
-    /*获取年份*/
+    /***
+     * 获取年份
+     * @param date
+     * @return
+     */
     public static String getYear(String date) {
         String y;
         String[] day = date.split("-");

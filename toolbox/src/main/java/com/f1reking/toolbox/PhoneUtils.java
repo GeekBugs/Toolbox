@@ -19,6 +19,10 @@ import java.util.regex.Pattern;
  */
 public class PhoneUtils {
 
+    public PhoneUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 直接拨打电话
      *

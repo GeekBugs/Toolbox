@@ -21,8 +21,7 @@ public class NetUtils {
     public static final int NETWORK_CLASS_4_G = 4; //4G
 
     private NetUtils() {
-        /* cannot be instantiated */
-        throw new UnsupportedOperationException("cannot be instantiated");
+        throw new Error("Do not need instantiate!");
     }
 
     public static boolean checkNetWork(Context context) {

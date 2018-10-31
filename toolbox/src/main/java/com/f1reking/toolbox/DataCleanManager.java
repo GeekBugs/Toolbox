@@ -13,6 +13,10 @@ import java.math.BigDecimal;
  */
 public class DataCleanManager {
 
+    public DataCleanManager() {
+        throw new Error("Do not need instantiate!");
+    }
+
     /**
      * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache)
      *

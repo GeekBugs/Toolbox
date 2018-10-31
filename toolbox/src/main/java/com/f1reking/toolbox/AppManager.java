@@ -16,6 +16,7 @@ public class AppManager {
     private volatile static AppManager instance;
 
     private AppManager() {
+        throw new Error("Do not need instantiate!");
     }
 
     public static AppManager getInstance() {

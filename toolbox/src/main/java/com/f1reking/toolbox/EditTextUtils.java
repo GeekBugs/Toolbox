@@ -10,6 +10,10 @@ import android.widget.EditText;
  */
 public class EditTextUtils {
 
+    public EditTextUtils() {
+        throw new Error("Do not need instantiate!");
+    }
+
     public static void setEditTextCursorLocation(EditText editText) {
         CharSequence text = editText.getText();
         if (text instanceof Spannable) {
