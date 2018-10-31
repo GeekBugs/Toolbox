@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class IDCardUtils {
 
-    public IDCardUtils() {
+    private IDCardUtils() {
         throw new Error("Do not need instantiate!");
     }
 

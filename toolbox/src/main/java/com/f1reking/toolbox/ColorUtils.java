@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class ColorUtils {
 
-    public ColorUtils() {
+    private ColorUtils() {
         throw new Error("Do not need instantiate!");
     }
 

@@ -8,7 +8,7 @@ import java.util.Locale;
  */
 public final class StringUtils {
 
-    public StringUtils() {
+    private StringUtils() {
         throw new Error("Do not need instantiate!");
     }
 

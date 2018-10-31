@@ -13,7 +13,7 @@ import android.widget.TextView;
  */
 public class TextViewUtils {
 
-    public TextViewUtils() {
+    private TextViewUtils() {
         throw new Error("Do not need instantiate!");
     }
 

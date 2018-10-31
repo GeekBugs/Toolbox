@@ -12,7 +12,7 @@ import android.os.Bundle;
  */
 public class ManifestConfig {
 
-    public ManifestConfig() {
+    private ManifestConfig() {
         throw new Error("Do not need instantiate!");
     }
 

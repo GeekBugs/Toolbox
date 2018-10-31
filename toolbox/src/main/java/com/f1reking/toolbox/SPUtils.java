@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class SPUtils {
 
-    public SPUtils() {
+    private SPUtils() {
         throw new Error("Do not need instantiate!");
     }
 

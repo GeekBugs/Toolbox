@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
  */
 public class SDCardUtils {
 
-    public SDCardUtils() {
+    private SDCardUtils() {
         throw new Error("Do not need instantiate!");
     }
 

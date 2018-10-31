@@ -1,4 +1,4 @@
-package com.f1reking.toolbox;
+package com.f1reking.toolbox_sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

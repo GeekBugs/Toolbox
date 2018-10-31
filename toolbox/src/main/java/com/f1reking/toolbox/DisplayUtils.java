@@ -18,7 +18,7 @@ import android.widget.ListView;
  */
 public class DisplayUtils {
 
-    public DisplayUtils() {
+    private DisplayUtils() {
         throw new Error("Do not need instantiate!");
     }
 

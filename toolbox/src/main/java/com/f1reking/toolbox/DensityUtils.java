@@ -9,7 +9,7 @@ import android.util.TypedValue;
  */
 public class DensityUtils {
 
-    public DensityUtils() {
+    private DensityUtils() {
         throw new Error("Do not need instantiate!");
     }
 

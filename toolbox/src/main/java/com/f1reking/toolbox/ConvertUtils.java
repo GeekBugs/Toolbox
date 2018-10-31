@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.TypedValue;
 
 import java.io.ByteArrayOutputStream;
 
@@ -15,7 +14,7 @@ import java.io.ByteArrayOutputStream;
  */
 public class ConvertUtils {
 
-    public ConvertUtils() {
+    private ConvertUtils() {
         throw new Error("Do not need instantiate!");
     }
 

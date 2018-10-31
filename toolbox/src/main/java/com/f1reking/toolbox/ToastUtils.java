@@ -10,7 +10,7 @@ import android.widget.Toast;
  */
 public class ToastUtils {
 
-    public ToastUtils() {
+    private ToastUtils() {
         throw new Error("Do not need instantiate!");
     }
 

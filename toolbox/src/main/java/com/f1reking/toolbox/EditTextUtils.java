@@ -10,7 +10,7 @@ import android.widget.EditText;
  */
 public class EditTextUtils {
 
-    public EditTextUtils() {
+    private EditTextUtils() {
         throw new Error("Do not need instantiate!");
     }
 

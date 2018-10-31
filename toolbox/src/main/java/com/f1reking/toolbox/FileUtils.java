@@ -21,7 +21,7 @@ import java.io.OutputStream;
  */
 public class FileUtils {
 
-    public FileUtils() {
+    private FileUtils() {
         throw new Error("Do not need instantiate!");
     }
 

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TimeUtils {
 
-    public TimeUtils() {
+    private TimeUtils() {
         throw new Error("Do not need instantiate!");
     }
 

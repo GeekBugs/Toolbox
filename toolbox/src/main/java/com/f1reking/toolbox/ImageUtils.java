@@ -24,10 +24,8 @@ import java.util.Date;
  */
 public class ImageUtils {
 
-    private Context context;
-
-    public ImageUtils(Context context) {
-        this.context = context;
+    private ImageUtils() {
+        throw new Error("Do not need instantiate!");
     }
 
     public static File getPhotoDir(Context context) {

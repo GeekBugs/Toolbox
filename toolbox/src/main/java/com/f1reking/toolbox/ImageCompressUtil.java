@@ -20,7 +20,7 @@ import java.io.OutputStream;
  */
 public class ImageCompressUtil {
 
-    public ImageCompressUtil() {
+    private ImageCompressUtil() {
         throw new Error("Do not need instantiate!");
     }
 

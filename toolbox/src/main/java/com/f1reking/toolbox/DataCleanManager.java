@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 public class DataCleanManager {
 
-    public DataCleanManager() {
+    private DataCleanManager() {
         throw new Error("Do not need instantiate!");
     }
 

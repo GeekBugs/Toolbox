@@ -12,7 +12,7 @@ import java.util.Locale;
  */
 public class DateUtils {
 
-    public DateUtils() {
+    private DateUtils() {
         throw new Error("Do not need instantiate!");
     }
 

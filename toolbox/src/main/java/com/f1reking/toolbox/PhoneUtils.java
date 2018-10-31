@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class PhoneUtils {
 
-    public PhoneUtils() {
+    private PhoneUtils() {
         throw new Error("Do not need instantiate!");
     }
 

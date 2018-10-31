@@ -15,7 +15,7 @@ import android.view.WindowManager;
  */
 public class ScreenUtils {
 
-    public ScreenUtils() {
+    private ScreenUtils() {
         throw new Error("Do not need instantiate!");
     }
 
