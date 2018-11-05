@@ -18,10 +18,10 @@
 #### Step 2. Add the dependency
 ```
 	dependencies {
-	       implementation 'com.github.F1ReKing:Toolbox:1.0.0'
+	       implementation 'com.github.F1ReKing:Toolbox:x.y.z'
 	}
 ```
-
+Current latest version:[![](https://jitpack.io/v/F1ReKing/Toolbox.svg)](https://jitpack.io/#F1ReKing/Toolbox)
 ## License
 
 ```
