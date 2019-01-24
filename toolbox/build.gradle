@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin:'maven-publish'
+apply plugin:'maven'
 
-group='com.github.f1reking'
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion 27
 
   defaultConfig {
     minSdkVersion 15
@@ -12,5 +12,32 @@ android {
 }
 
 dependencies {
-  api 'com.android.support:support-v4:28.0.0'
+  api 'com.android.support:support-v4:27.1.1'
+}
+
+// 上传到私服
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(url: properties.getProperty("POM_URL")) {
+        authentication(userName: properties.getProperty("nexus.user"),
+            password: properties.getProperty("nexus.password"))
+      }
+
+      pom.groupId = properties.getProperty("POM_GROUP_ID")
+      pom.artifactId = properties.getProperty("POM_ATRIFACT_ID")
+      pom.version = properties.getProperty("POM_VERSION")
+
+      pom.project {
+        licenses {
+          license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+      }
+    }
+  }
 }

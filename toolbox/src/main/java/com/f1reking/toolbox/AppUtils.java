@@ -54,8 +54,7 @@ public class AppUtils {
             String packageName = context.getPackageName();
             verCode =
                 (int) context.getPackageManager()
-                    .getPackageInfo(packageName, 0)
-                    .getLongVersionCode();
+                    .getPackageInfo(packageName, 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
